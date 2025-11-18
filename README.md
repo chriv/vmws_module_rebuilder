@@ -1,6 +1,6 @@
 # VMware Workstation Auto-Signer for Linux Secure Boot
 
-VMware Workstation must already be installed to use this.
+VMware Workstation must already be installed to use this. It can be obtained and licensed for free at https://support.broadcom.com/group/ecx/productdownloads?subfamily=VMware%20Workstation%20Pro&freeDownloads=true
 
 This tool solves the issue where VMware Workstation modules (`vmmon`, `vmnet`) fail to load on Linux systems with Secure Boot enabled, particularly after Kernel updates.
 
