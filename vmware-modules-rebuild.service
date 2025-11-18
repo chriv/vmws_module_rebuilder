@@ -1,0 +1,14 @@
+[Unit]
+Description=VMware Module Rebuild and Sign
+After=local-fs.target network.target
+Before=vmware.service
+
+[Service]
+Type=oneshot
+User=root
+ExecStart=/usr/local/bin/vmware-rebuild-sign.sh
+RemainAfterExit=yes
+TimeoutStartSec=300
+
+[Install]
+WantedBy=multi-user.target

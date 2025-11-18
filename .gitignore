@@ -1,0 +1,20 @@
+# Security: NEVER commit keys
+*.priv
+*.der
+MOK*
+*.pem
+
+# System & Editor files
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+*.swp
+*~
+
+# Build artifacts (if testing compilation locally)
+*.ko
+*.o
+*.mod.c
+modules.order
+Module.symvers
