@@ -1,5 +1,7 @@
 # VMware Workstation Auto-Signer for Linux Secure Boot
 
+VMware Workstation must already be installed to use this.
+
 This tool solves the issue where VMware Workstation modules (`vmmon`, `vmnet`) fail to load on Linux systems with Secure Boot enabled, particularly after Kernel updates.
 
 It creates a systemd service that runs **once at boot**, checks if the modules for the current kernel are compiled/signed, and if not, recompiles them, signs them with your MOK (Machine Owner Key), and loads them before the VMware service starts.
