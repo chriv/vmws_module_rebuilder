@@ -15,8 +15,8 @@ It creates a systemd service that runs **once at boot**, checks if the modules f
 1.  Clone this repository:
 
     ```bash
-    git clone [https://github.com/yourusername/vmware-autosign.git](https://github.com/yourusername/vmware-autosign.git)
-    cd vmware-autosign
+    git clone [https://github.com/chriv/vmws_module_rebuilder](https://github.com/chriv/vmws_module_rebuilder)
+    cd vmws_module_rebuilder
     ```
 
 2.  Run the setup script as root:
