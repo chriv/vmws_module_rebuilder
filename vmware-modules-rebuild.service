@@ -7,7 +7,7 @@ Before=vmware.service
 Type=oneshot
 User=root
 ExecStart=/usr/local/bin/vmware-rebuild-sign.sh
-RemainAfterExit=yes
+RemainAfterExit=no
 TimeoutStartSec=300
 
 [Install]

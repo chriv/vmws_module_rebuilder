@@ -53,3 +53,11 @@ modprobe vmmon
 modprobe vmnet
 
 echo "VMware module rebuild and sign complete."
+
+# # 4. Start vmware service
+# echo "Stopping vmware service..."
+# systemctl stop vmware
+# # Add a short delay
+# ping -c5 localhost
+# echo "Starting vmware service..."
+# systemctl start vmware
