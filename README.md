@@ -33,6 +33,14 @@ It creates a systemd service that runs **once at boot**, checks if the modules f
     * **IMPORTANT:** If keys were generated, you must **REBOOT**.
     * Upon reboot, you will see a blue "MOK Management" screen. Select **Enroll MOK**, view the key, continue, and enter the password you just set.
 
+4.  That's it!
+
+    * Every time the system reboots, this service should run before the vmware service.
+    * This service will use VMware's own tool to rebuild all modules (and also attempt to start them)
+    * After VMware's tool exits (failing to load vmmon and vmnet because of secure boot), this service will sign the modules.
+    * After signing the modules, this service will load the modules.
+    * The vmware service should trigger on its own after this service finishes and exits.
+
 ## How it works
 
 1.  **Configuration:** Stores settings in `/etc/vmwsmr/vmwsmr.conf`.
@@ -43,3 +51,13 @@ It creates a systemd service that runs **once at boot**, checks if the modules f
 ## Updating Dependencies
 
 The setup script installs `linux-headers-generic`, which is a metapackage. This ensures that when you run `apt upgrade` and get a new kernel, you also automatically get the matching headers required for signing.
+
+---
+## Disclaimers and Trademark Notice
+
+* This project, **vmwsmr**, is an independent, community-driven tool and is **not affiliated with, endorsed by, or sponsored by VMware, Inc.** or its parent company, **Broadcom Inc.**
+* The use of **VMware** and **VMware Workstation** in this documentation and in the functionality of the tool refers to the trademarked product owned by Broadcom Inc. and is used solely for descriptive purposes.
+* The user is responsible for ensuring compliance with VMware's licensing and terms of service.
+* Broadcom Inc. reserves all rights to the VMware and VMware Workstation trademarks.
+---
+
