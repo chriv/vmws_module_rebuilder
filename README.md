@@ -1,4 +1,4 @@
-# VMware Workstation Auto-Signer for Linux Secure Boot
+# vmwsmr Automatic Builder, Signer, and Installer for VMware Workstation Modules
 
 VMware Workstation must already be installed to use this. It can be obtained and licensed for free at https://support.broadcom.com/group/ecx/productdownloads?subfamily=VMware%20Workstation%20Pro&freeDownloads=true
 
@@ -9,7 +9,7 @@ It creates a systemd service that runs **once at boot**, checks if the modules f
 ## Prerequisites
 
 * Ubuntu/Debian based system (Scripts use `apt`).
-* VMware Workstation Pro/Player installed.
+* VMware Workstation installed.
 * Secure Boot enabled (otherwise you don't need this).
 
 ## Installation
@@ -35,10 +35,10 @@ It creates a systemd service that runs **once at boot**, checks if the modules f
 
 ## How it works
 
-1.  **Configuration:** Stores settings in `/etc/vmware-rebuild/vmware-rebuild.conf`.
-2.  **Keys:** Stores keys in `/etc/vmware-rebuild/` (restricted to root).
-3.  **Service:** A systemd unit `vmware-modules-rebuild.service` runs before `vmware.service`.
-4.  **Script:** `/usr/local/bin/vmware-rebuild-sign.sh` compiles the modules using `vmware-modconfig`, signs them using the kernel headers script, and loads them.
+1.  **Configuration:** Stores settings in `/etc/vmwsmr/vmwsmr.conf`.
+2.  **Keys:** Stores keys in `/etc/vmwsmr/` (restricted to root).
+3.  **Service:** A systemd unit `vmwsmr.service` runs before `vmware.service`.
+4.  **Script:** `/usr/local/bin/vmwsmr.sh` compiles the modules using `vmware-modconfig`, signs them using the kernel headers script, and loads them.
 
 ## Updating Dependencies
 

@@ -2,7 +2,7 @@
 set -e
 
 # Configuration
-CONFIG_DIR="/etc/vmware-rebuild"
+CONFIG_DIR="/etc/vmwsmr"
 BIN_DIR="/usr/local/bin"
 SERVICE_DIR="/etc/systemd/system"
 
@@ -12,7 +12,7 @@ if [ "$EUID" -ne 0 ]; then
   exit 1
 fi
 
-echo "=== VMware Secure Boot Auto-Signer Setup ==="
+echo "=== vmwsmr Setup ==="
 
 # 1. Install Dependencies
 echo "[+] Installing build dependencies..."
@@ -43,8 +43,8 @@ string_mask = utf8only
 x509_extensions = myexts
 
 [ req_distinguished_name ]
-O = VMware Rebuild Service
-CN = VMware Rebuild MOK
+O = vmwsmr Rebuild Service
+CN = vmwsmr Rebuild MOK
 
 [ myexts ]
 basicConstraints=critical,CA:FALSE
@@ -70,25 +70,25 @@ fi
 # 4. Install Configuration File
 echo "[+] Installing configuration file..."
 # We don't overwrite if it exists to preserve user settings
-if [ ! -f "$CONFIG_DIR/vmware-rebuild.conf" ]; then
-    cp vmware-rebuild.conf "$CONFIG_DIR/vmware-rebuild.conf"
+if [ ! -f "$CONFIG_DIR/vmwsmr.conf" ]; then
+    cp vmwsmr.conf "$CONFIG_DIR/vmwsmr.conf"
 else
     echo "[*] Config file exists. Skipping copy."
 fi
 
 # 5. Install Main Script
 echo "[+] Installing rebuild script to $BIN_DIR..."
-cp vmware-rebuild-sign.sh "$BIN_DIR/vmware-rebuild-sign.sh"
-chmod +x "$BIN_DIR/vmware-rebuild-sign.sh"
+cp vmwsmr-sign.sh "$BIN_DIR/vmwsmr.sh"
+chmod +x "$BIN_DIR/vmwsmr.sh"
 
 # 6. Install Service
 echo "[+] Installing Systemd service..."
-cp vmware-modules-rebuild.service "$SERVICE_DIR/vmware-modules-rebuild.service"
+cp vmwsmr.service "$SERVICE_DIR/vmwsmr.service"
 systemctl daemon-reload
-systemctl enable vmware-modules-rebuild.service
+systemctl enable vmwsmr.service
 
 echo "=== Setup Complete ==="
 echo "1. If you just generated a new key, REBOOT NOW."
 echo "2. On boot, select 'Enroll MOK', 'Continue', 'Yes', and enter your password."
 echo "3. If keys were already set up, you can test the service with:"
-echo "   systemctl start vmware-modules-rebuild.service"
+echo "   systemctl start vmwsmr.service"

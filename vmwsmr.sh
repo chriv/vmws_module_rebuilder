@@ -2,7 +2,7 @@
 set -e 
 
 # Load Configuration
-CONFIG_FILE="/etc/vmware-rebuild/vmware-rebuild.conf"
+CONFIG_FILE="/etc/vmwsmr/vmwsmr.conf"
 
 if [ -f "$CONFIG_FILE" ]; then
     source "$CONFIG_FILE"

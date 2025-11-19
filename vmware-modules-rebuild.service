@@ -1,12 +1,12 @@
 [Unit]
-Description=VMware Module Rebuild and Sign
+Description=vmwsmr Rebuild and Sign
 After=local-fs.target network.target
 Before=vmware.service
 
 [Service]
 Type=oneshot
 User=root
-ExecStart=/usr/local/bin/vmware-rebuild-sign.sh
+ExecStart=/usr/local/bin/vmwsmr.sh
 RemainAfterExit=no
 TimeoutStartSec=300
 

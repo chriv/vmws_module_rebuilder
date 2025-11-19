@@ -9,7 +9,7 @@ KERN_VER=$(uname -r)
 VMWARE_MODULE_DIR="/lib/modules/$KERN_VER/misc"
 SIGN_SCRIPT="/usr/src/linux-headers-$KERN_VER/scripts/sign-file"
 
-echo "Starting VMware module rebuild for kernel $KERN_VER..."
+echo "Starting vmmon and vmnet modules rebuild for kernel $KERN_VER..."
 
 # 3. Recompile modules
 # --install-all compiles and installs the modules to the directory defined above
@@ -26,7 +26,11 @@ if [ -f "$SIGN_SCRIPT" ]; then
         echo "ERROR: vmmon.ko was not found at $VMWARE_MODULE_DIR. Compilation likely failed completely."
         exit 1
     fi
-    
+    if [ ! -f "$VMWARE_MODULE_DIR/vmnet.ko" ]; then
+        echo "ERROR: vmnet.ko was not found at $VMWARE_MODULE_DIR. Compilation likely failed completely."
+        exit 1
+    fi
+
     echo "Signing vmmon..."
     "$SIGN_SCRIPT" sha256 MOK.priv MOK.der "$VMWARE_MODULE_DIR/vmmon.ko"
     
@@ -42,4 +46,4 @@ echo "Loading modules..."
 modprobe vmmon
 modprobe vmnet
 
-echo "VMware module rebuild and sign complete."
+echo "vmmon and vmnet modules rebuild and sign complete."
