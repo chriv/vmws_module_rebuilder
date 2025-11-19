@@ -78,7 +78,7 @@ fi
 
 # 5. Install Main Script
 echo "[+] Installing rebuild script to $BIN_DIR..."
-cp vmwsmr-sign.sh "$BIN_DIR/vmwsmr.sh"
+cp vmwsmr.sh "$BIN_DIR/vmwsmr.sh"
 chmod +x "$BIN_DIR/vmwsmr.sh"
 
 # 6. Install Service
